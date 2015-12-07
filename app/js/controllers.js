@@ -5,7 +5,7 @@
 var baggageSSharingApp = angular.module('baggageSSharingApp', []);
 
 baggageSSharingApp.controller('BSController', ['$scope', '$http', function($scope, $http) {
-  $http.get('phones/flights.json').success(function(data) {
+  $http.get('flights/flights.json').success(function(data) {
     $scope.flights = data;
   });
   $scope.curElement = {
