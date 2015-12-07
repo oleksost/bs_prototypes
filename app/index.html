@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" ng-app="baggageSSharingApp">
+<head>
+  <meta charset="utf-8">
+  <title>Bacggage Sharing</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+
+
+  <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+ <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+
+      <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="css/app.css">
+<script type="text/javascript">
+     document.getElementById("msg").innerHTML= "Hallo";
+
+
+
+</script>
+
+
+</head>
+<body ng-controller="BSController">
+
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation" style="vertical-align: middle;
+  text-align: center;">
+        <div class="container topnav as">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">
+                            <img alt="Brand" src="img/BS_Logo.png" height="60">
+                           </a>
+                
+            </div>
+
+            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            
+                <ul class="nav navbar-nav navbar-right" >
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#services">Find Flight</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Share your Baggage</h1>
+                        <h3>Save your money</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Facebook</span></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <!-- Page Content -->
+
+  <a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    
+                    <h2 class="section-heading">Search your flight:</h2>
+                    <p class="lead">A special thanks to blabla </p>
+                </div>
+            </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                   <div class="form-group" class="navbar-form navbar-left" role="search">
+                      <input type="text" class="form-control" placeholder="Search"  ng-model="query">
+                      
+                            Sort by:
+                             <select ng-model="orderProp">
+                               <option value="Departure">Alphabetical</option>
+                               <option value="age">Newest</option>
+
+                            </select>
+
+
+ 
+
+                   </div>
+                         
+
+               </div>
+             </div> 
+
+        </div>
+               
+            
+
+      </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+  <div class="container">
+
+            <div class="col-md-3 col-sm-6 hero-feature" ng-repeat="flight in flights | filter:query | orderBy:orderProp" >
+                <div class="thumbnail" style="  max-height: 350px; min-height:350px;">
+
+
+                    <img class="profile-pic" src="{{flight.imageUrl}}"   onError="this.src='img/BS_Logo2.png'; this.onerror=null; this.style.opacity='0.4';">
+
+
+                    <div class="caption">
+                        <h3 id="departure">{{flight.Departure_short}}  <span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span> {{flight.Destination_short}} </h3>
+                        <h4 id="flnumber">{{flight.Flight_Number}} on  <span>{{flight.Date| date}}</span> </h4>
+                        <p>{{flight.Departure}} to {{flight.Destination}}</p>
+                       
+                       <div class="btn-group">
+                        
+                            <a href="#buy" class="btn btn-primary" ng-click="setForm($index)">Buy Place!</a>
+
+                            <a type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More Info 
+                            <span class="caret"></span>
+
+                            </a>
+
+
+                             <div class="dropdown-menu" >
+                              <p style="margin:10px"> {{flight.Message_Text}}</p>
+                             </div>
+                      
+                    
+                       </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+  
+
+
+                
+        
+ <a  name="buy"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+
+             <div class="container">
+             
+                <div class="thumbnail">
+                  <img class="profile-pic" src="{{curElement.profile_pic}}"   onError="this.src='img/BS_Logo2.png'; this.onerror=null;">
+                        <div class="caption">
+                        <h3 id="departure">{{curElement.departure}}   {{curElement.destination}} </h3>
+
+                        <h4 id="flnumber">{{curElement.flightNumber}} {{curElement.Date| date}} </h4>
+                        <p style="margin:10px" align="
+                        center"> {{curElement.message}}</p>
+                      
+                    
+                       </div>
+                    </div>
+
+
+
+
+
+              
+                </div>
+
+             </div>
+
+               
+<form>
+  <fieldset class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model="curElement.email">
+    <small class="text-muted">We can show the email here.</small>
+  
+  <fieldset class="form-group">
+    <label for="exampleTextarea">Write {{curElement.user_name}} a message</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+  
+ 
+  <button type="submit" class="btn btn-primary">Send a BS request</button>
+</form>
+
+
+
+
+
+
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+</div>
+
+
+
+
+
+
+
+  <a  name="contact"></a>
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Connect to Baggage Sharing:</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+    <!-- /.banner -->
+
+  
+
+
+   <!-- jQuery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+
+   <script src="js/bootstrap.min.js"></script>
+
+
+</body>
+</html>
